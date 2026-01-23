@@ -1,0 +1,148 @@
+|---------------------------------------------------------------------------------------------|
+|Tree has some terminology:                                                                   |
+|     1.Tree Node                                                                             |
+|     2.parent                                                                                |
+|     3.child                                                                                 |                                                                   
+|     4.degree of node                                                                        |
+|     5.terminal Node                                                                         |
+|     6.branch Node                                                                           |
+|     7.internal Node                                                                         |
+|     8.hierarchy of Node                                                                     |
+|     9.degree of tree                                                                        |
+|    10.deep of tree                                                                          |
+|---------------------------------------------------------------------------------------------|
+|   If you want to realize a Tree,there have two methods:                                     |
+|           First method:                                                                     |  
+|                  <*>Arry                                                                    |
+|                      ->Data         : It tells you this tree Node                           |
+|                      ->NULL(no Data): It tells you there have no tree Node                  |
+|               example:                                                                      |
+|                   suppose there have a tree we want to storage in computer.                 |
+|                   NULL:   it means there have no Tree Node.                                 |
+|                       ************************************                                  |
+|                       *          [    1    ]             *                                  |
+|                       *         /     |     \            *                                  |
+|                       *      [2]     [3]     [4]         *                                  |
+|                       *      / \      |     /   \        *                                  |
+|                       *   [5]   [6] 7.NULL [8]  [9]      *                                  |
+|                       *    |     |          |    |       *                                  |
+|                       *  10.NULL 11.NULL 12.NULL 13.NULL *                                  |
+|                       ************************************                                  |
+|                   This tree storage in computer by Arry,it's Structure is this:             |  
+|                       for parent or child,it storage subscript information                  |                                                                                                                        |      
+|                     a.parents storage method:                                               |
+|                            data      parent                                                 |
+|                            [1]       [NUL]                                                  |
+|                            [2]       [ 0 ]                                                  |
+|                            [3]       [ 0 ]                                                  |
+|                            [4]       [ 0 ]                                                  |
+|                            [5]       [ 1 ]                                                  |
+|                            [6]       [ 1 ]                                                  |
+|                            [8]       [ 3 ]                                                  |
+|                            [9]       [ 3 ]                                                  |
+|                     b.child storage method:                                                 |
+|                            data      child    child   child                                 |
+|                            [1]       [ 1 ]    [ 2 ]   [ 3 ]                                 |
+|                            [2]       [ 4 ]    [ 5 ]   [NUL]                                 |
+|                            [3]       [NUL]    [NUL]   [NUL]                                 |
+|                            [4]       [ 7 ]    [ 8 ]   [NUL]                                 |
+|                            [5]       [NUL]    [NUL]   [NUL]                                 |
+|                            [6]       [NUL]    [NUL]   [NUL]                                 |
+|                            [8]       [NUL]    [NUL]   [NUL]                                 |
+|                            [9]       [NUL]    [NUL]   [NUL]                                 |                                
+|                     c.parent and child storage method:                                      |
+|                            data       parent      child    child   child                    |
+|                            [1]        [NUL]       [ 1 ]    [ 2 ]   [ 3 ]                    |
+|                            [2]        [ 0 ]       [ 4 ]    [ 5 ]   [NUL]                    |
+|                            [3]        [ 0 ]       [NUL]    [NUL]   [NUL]                    |
+|                            [4]        [ 0 ]       [ 7 ]    [ 8 ]   [NUL]                    |
+|                            [5]        [ 1 ]       [NUL]    [NUL]   [NUL]                    |
+|                            [6]        [ 1 ]       [NUL]    [NUL]   [NUL]                    |
+|                            [8]        [ 3 ]       [NUL]    [NUL]   [NUL]                    |
+|                            [9]        [ 3 ]       [NUL]    [NUL]   [NUL]                    |                        
+|*********************************************************************************************|
+|               realize:                                                                      |
+|                   Tree_Arry[Parent_Child_Nums_nums][Node_Nums];                             |
+|*********************************************************************************************| 
+|           second method:                                                                    |
+|                  <*>Structure of Node                                                       |
+|                     need two DataType:                                                      |
+|                     Data-region:to storage DataElement                                      |
+|                     pointer-region:to storage next Nodes address                            |
+|                     we also use this example:                                               |
+|                       ************************************                                  |
+|                       *          [    1    ]             *                                  |
+|                       *         /     |     \            *                                  |
+|                       *      [2]     [3]     [4]         *                                  |
+|                       *      / \      |     /   \        *                                  |
+|                       *   [5]   [6] 7.NULL [8]  [9]      *                                  |
+|                       *    |     |          |    |       *                                  |
+|                       *  10.NULL 11.NULL 12.NULL 13.NULL *                                  |
+|                       ************************************                                  |
+|                     Structure:                                                              |
+|                       [5]+---[2]+---[1]---+[3]                                              |
+|                               |      |                                                      |
+|                              [6]     |                                                      |
+|                                      +                                                      |
+|                              [8]+---[4]---+[9]                                              |
+|                                                                                             |
+|                       Node[1]:child is [2] [3] [4]                                          |
+|                       Node[2]:child is [5] [6]                                              |
+|                       Node[3]:no child                                                      |
+|                       Node[4]:child is [8] [9]                                              |
+|                       Node[5]:no child                                                      |
+|                       Node[6]:no child                                                      |
+|                       Node[8]:no child                                                      |
+|                       Node[9]:no child                                                      |
+|                       if you have learned adjacency list,you will find they are simliar     |
+|*********************************************************************************************|
+|   There has a special tree:Binary Tree                                                      |
+|       Binary tree must obey these rules:                                                    |
+|           1.Tree Node's child don't over two:                                               |
+|               Three satuation:                                                              |
+|                 a.left child and right child                                                |
+|                 b.only left child                                                           |
+|                 c.only right child                                                          |
+|                 /*satuation b and c named slant Tree*/                                      |  
+|           2.complete Binary Tree:                                                           |
+|                 obey the rules:                                                             |
+|                       expcept last tier can don't full Nodes,others tier must full Nodes    |
+|                       example:                                                              |
+|                                    [ ]                                                      |
+|                                   /   \                                                     |
+|                                [ ]     [ ]                                                  |
+|                               /   \    /  \                                                 |
+|                             []   NULL []  []                                                |
+|           3.full Binary tree:                                                               |
+|                 obey the rules:                                                             |
+|                       every tier is full Node                                               |
+|                       example:                                                              |
+|                                    [ ]                                                      |
+|                                   /   \                                                     |
+|                                [ ]     [ ]                                                  |
+|                               /   \   /   \                                                 |
+|                              []   [] []   []                                                |
+|*********************************************************************************************|                                 
+|           storage Binary Tree:                                                              |
+|             //By Arry                                                                       |
+|             <*>                                                                             |
+|               Arry_Binary_Tree[Nodes]                                                       |
+|               storage Nodes use subscript                                                   |
+|               example:                                                                      |
+|                   Arry_Binary_Tree[A][B][NUL][C][D][NUL][E][F][G]                           |
+|             //By link list                                                                  |
+|             <*>                                                                             |
+|               typedef struct link_list_Binary_Tree                                          |
+|               {                                                                             |
+|                   DataType DataElement;                                                     |
+|                   struct link_list_Binary_Tree *left_child;                                 |
+|                   struct link_list_Binary_Tree *right_child;                                |                            
+|               }Binary_Tree                                                                  |
+|               example:                                                                      |
+|                                    Node[A]                                                  |
+|                                   /      \                                                  |
+|                                Node[B]    Node[C]                                           |
+|                               /      \    /      \                                          |
+|                          Node[D] Node[E] Node[F] Node[G]                                    |
+|*********************************************************************************************|
+|
