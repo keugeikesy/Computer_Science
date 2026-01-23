@@ -1,0 +1,367 @@
+|-------------------------------------------------------------------------------------------------------------|
+|                                                                                                             |
+|   /**                                                                                                       |
+|    * linear Table Structure                                                                                 |
+|    *   You can realize a linear Table by two methods:                                                       |
+|    *     a.Arry                                                                                             |
+|    *       It's Address is sequential and logic too                                                         |
+|    *       Math Function:                                                                                   |
+|    *         y = kx + b                                                                                     |
+|    *           k:type space                                                                                 |
+|    *           x:sequence number                                                                            |  
+|    *           b:basic Address  (from Arry[0])                                                              |  
+|    *     b.link list                                                                                        |
+|    *       It's Address is not sequential but on logic is sequential                                        |
+|    *                                                                                                        |
+|    *                                                                                                        |
+|    **/                                                                                                      |
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *                                                                                                        |
+|    * code of linear Table                                                                                   |
+|    *   a.realize by Arry                                                                                    |
+|    *                                                                                                        |
+|    **/                                                                                                      |
+|    typedef [DataType] ElemType;                                                                             |
+|    typedef struct Arry_linear_Table                                                                         |
+|       {                                                                                                     |
+|           int Size = Number;          /**                                                                   |
+|                                        *  define Arry Max Size                                              |
+|                                        *    You need to give Number a Arabic numerals                       |
+|                                        *                                                                    |
+|                                        **/                                                                  |
+|                                                                                                             |
+|           ElemType Arry[Size];        /**                                                                   |
+|                                        *  size of linear Table                                              |
+|                                        *                                                                    |
+|                                        **/                                                                  |
+|                                                                                                             |
+|           int length = -1;            /**                                                                   |
+|                                        *  show length of linear Table at present                            |
+|                                        *                                                                    |
+|                                        **/                                                                  |
+|                                                                                                             |
+|       }linear_table;                  /**                                                                   |
+|                                        *  rename this Type:                                                 |
+|                                        *  for struct linelinklist change to a new name :linear_table        |
+|                                        *                                                                    |
+|                                        **/                                                                  |
+|                                                                                                             |                                                                                       |
+|   /**                                                                                                       |
+|    *                                                                                                        |
+|    * code of linear Table                                                                                   |
+|    *   b.realize by link list                                                                               |
+|    *                                                                                                        |
+|    **/                                                                                                      |
+|    typedef struct link_list_Node                                                                            |
+|       {                                                                                                     |
+|           DataType Data_area;                     /**                                                       |
+|                                                    *  storage Data to discribe a object                     |
+|                                                    *  you can create many Data area                         | 
+|                                                    *                                                        |
+|                                                    **/                                                      |
+|                                                                                                             |
+|           struct link_list_Node *next_Node;       /**                                                       |
+|         //struct link_list_Node *previous_Node;    *  pointing to next Node                                 |
+|                                                    *    a.using one pointer to point next Node              |
+|                                                    *        this link list is monodirectional               |
+|                                                    *    b.using two pointer to point previous and next node |
+|                                                    *        this link list is bidirectional                 |
+|                                                    *                                                        |
+|                                                    **/                                                      |
+|                                                                                                             |
+|           int length = -1;                        /**                                                       |
+|                                                    *  show length of link list at present                   |
+|                                                    *                                                        |
+|                                                    **/                                                      |
+|       }list_Node;                                                                                           |
+|                                                                                                             |
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *  linear Table operations                                                                               |
+|    *    a.create_new_linear_table()                                                                         |
+|    *    b.insert_Data_linear_table(linear_table *linear_table_name,DataType Data)                           |                                                                        
+|    *    c.delete_Data_linear_table(linear_table *linear_table_name,DataType Data)                           |                                                                        
+|    *    d.traversal_linear_table(linear_table *linear_table_name)                                           |
+|    *    e.delete_linear_table(linear_table *linear_table_name)                                              |
+|    *    f.search_Data_linear_table(linear_table *linear_table_name,DataType key_Word)                       |
+|    *                                                                                                        |
+|    *  For different linear Table Structure,they have different code but same operations                     |
+|    *                                                                                                        |
+|    **/                                                                                                      |
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *  linear Table Structure by Arry                                                                        |
+|    *  These operations are using for Arry linear Table                                                      |
+|    *                                                                                                        |
+|    **/                                                                                                      |
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *  create_new_linear_table()                                                                             |
+|    *    Function type: point                                                                                |
+|    *    return: a linear Table Address                                                                      |
+|    *    need head file: stdlib.h                                                                            |
+|    *                                                                                                        |
+|    *    There have two model to realize create_new_linear_table()                                           |
+|    *      a.first place not storage data                                                                    |
+|    *        This function is create_new_linear_table()                                                      |
+|    *      b.first place storage data                                                                        |
+|    *        This function is create_new_linear_table(DataType data)                                         |
+|    *        you need do this operating:                                                                     |
+|    *          new_linear_table->length = new_linear_table->length + 1;                                      |
+|    *          new_linear_table->Arry[new_linear_table->length] = data;                                      |
+|    **/                                                                                                      |
+|    linear_table *create_new_linear_table()                                                                  |
+|       {                                                                                                     |
+|            linear_table *new_linear_table = (linear_table*)malloc(sizeof(linear_table));                    |
+|           /**                                                                                               |
+|            * For this step,you can do two operating                                                         |
+|            *  a.storage data                                                                                |
+|            *     execute this sentence                                                                      |
+|            *     //new_linear_table->length = new_linear_table->length + 1;                                 |            
+|            *     //new_linear_table->Arry[new_linear_table->length] = data;                                 |
+|            *  b.not storage data                                                                            |
+|            *    execute this sentence                                                                       |
+|            *    //new_linear_table->length = new_linear_table->length + 1;                                  |
+|            *    //new_linear_table->Arry[new_linear_table->length] = NULL;                                  |
+|            *                                                                                                |
+|            *  In this example,I using situation b to realize create_new_linear_table function               |
+|            *                                                                                                |
+|            **/                                                                                              |
+|            new_linear_table->length = new_linear_table->length + 1;                                         |
+|            new_linear_table->Arry[new_linear_table->length] = NULL;                                         |
+|           /**                                                                                               |
+|            * return new_linear_table pointer aim to using the linear_table                                  |
+|            *                                                                                                |
+|            **/                                                                                              |
+|           return new_linear_table;                                                                          |
+|       }                                                                                                     |
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *  insert_Data_linear_table(linear_table *linear_table_name,DataType data)                               |
+|    *    Function type:Bool                                                                                  |
+|    *    return: ture or False                                                                               |
+|    *            ture means insert Data into linear_table operating is successfully                          |
+|    *            false means insert Data into linear_table operating is unsuccessfully                       |
+|    *    need head file: stdbool.h                                                                           |
+|    **/                                                                                                      |
+|    Bool insert_Data_into_linear_table(linear_table *linear_table_name,DataType data)                        |
+|       {                                                                                                     |
+|           /**                                                                                               |
+|            * If you want to insert data into the linear_table which you have been creating    `             |
+|            * linear_table needs to satisfy these conditions:                                                |
+|            *   a.linear_table pointer is exist                                                              |
+|            *   b.linear_table is not full                                                                   |
+|            *                                                                                                |
+|            **/                                                                                              |
+|            if(linear_table_name != NULL && linear_table_name->length != -1 &&                               |
+|                                            linear_table_name->length < linear_table_name->Size - 1)         |
+|               {                                                                                             |
+|                   linear_table_name->length = linear_table_name->length + 1;                                |
+|                   linear_table_name->Arry[linear_table_name->length] = data;                                |
+|                   return ture;                                                                              |
+|               }else{                                                                                        |
+|                       return false;                                                                         |
+|                    }                                                                                        | 
+|       }                                                                                                     |
+|                                                                                                             | 
+|    /**                                                                                                      |
+|     * delete_Data_linear_table(linear_table *linear_table_name,DataType data)                               |
+|     *   Function type: Bool                                                                                 |
+|     *   return: ture or False                                                                               |
+|     *           ture means insert Data into linear_table operating is successfully                          |
+|     *           false means insert Data into linear_table operating is unsuccessfully                       |
+|     *   need head file: stdbool.h                                                                           |
+|     **/                                                                                                     |
+|     Bool delete_Data_linear_table(linear_table *linear_table_name)                                          |
+|       {                                                                                                     |                                                                                            
+|           if(linear_table_name != NULL linear_table_name->length != -1)  /**                                |
+|                                                                           *                                 |
+|                                                                           * we using this judgment sentence |
+|                                                                           * aim to ensuer                   |
+|                                                                           * shall we have                   |
+|                                                                           * linear_table pointer            |
+|                                                                           *                                 |
+|                                                                           * if sentence is ture             |
+|                                                                           *   execute the code block        |
+|                                                                           *  else                           |
+|                                                                           *   not execute                   |  
+|                                                                           **/                               |
+|                                                                                                             |
+|              {                                                                                              |
+|                   int temp = 0;                                                                             |
+|                   for(temp;temp <= linear_table_name->length;temp = temp + 1)                               |
+|                       {                                                                                     |
+|                           if(linear_table_name->Arry[linear_table_name->length] == data)                    |
+|                              {                                                                              |
+|                                   linear_table_name->Arry[linear_table_name->length] == NULL;               |
+|                                   temp = NULL;                                                              |
+|                                   return ture;                                                              |
+|                              }else{                                                                         |
+|                                       continue;                                                             |            
+|                                   }                                                                         |
+|                       }                                                                                     |
+|                   return false;                                                                             |
+|              }else{                                                                                         |
+|                       return false;                                                                         |
+|                   }                                                                                         |
+|       }                                                                                                     |
+|    /**                                                                                                      |
+|     * traversal_linear_table(linear_table *linear_table_name)                                               |
+|     *     Function type: Bool                                                                               |
+|     *     return:ture or False                                                                              |
+|     *            ture means operating is successfully                                                       |
+|     *            false means operating is unsuccessfully                                                    |
+|     *     need head file: stdio.h                                                                           |
+|     *                     stdbool.h                                                                         |
+|     *                                                                                                       |
+|     **/                                                                                                     |
+|     Bool traversal_linear_table(linear_table *linear_table_name)                                            |
+|       {                                                                                                     |
+|           if(linear_table_name != NULL && linear_table_name->length != -1)                                  |
+|              {                                                                                              |
+|                   int temp = 0;                                                                             |
+|                   for(temp;temp < linear_table_name->length;temp = temp + 1)                                |
+|                       {                                                                                     |
+|                           printf("linear_table[%d] is %d",linear_table_name->length,                        |
+|                                   linear_table_name->Arry[linear_table_name->length]);                      |
+|                       }                                                                                     |
+|                    temp = NULL;                                                                             |
+|                    return ture;                                                                             |
+|              }else{                                                                                         |
+|                       return false;                                                                         |
+|                   }                                                                                         |
+|       }                                                                                                     |
+|                                                                                                             |
+|    /**                                                                                                      |
+|     * delete_linear_table(linear_table *linear_table_name)                                                  |
+|     *    Function type:Bool                                                                                 |
+|     *    return:ture or false                                                                               |
+|     *           ture means insert Data into linear_table operating is successfully                          |
+|     *           false means insert Data into linear_table operating is unsuccessfully                       | 
+|     *    need head file: stdlib.h                                                                           |
+|     *                    stdbool.h                                                                          |
+|     *                                                                                                       | 
+|     **/                                                                                                     |
+|     Bool delete_linear_table(linear_table *linear_table_name)                                               |
+|       {                                                                                                     |
+|           if(linear_table_name != NULL && linear_table_name->length != -1)                                  |
+|              {                                                                                              |
+|                   free(linear_table_name);                                                                  |
+|                   return ture;                                                                              |
+|              }else{                                                                                         |
+|                       return false;                                                                         |
+|                   }                                                                                         |
+|       }                                                                                                     |
+|                                                                                                             |
+|    /**                                                                                                      |
+|     * search_Data_linear_table(linear_table *linear_table_name,DataType key_Word)                           |
+|     *    Function Type:Bool                                                                                 |
+|     *    return:ture or false                                                                               |
+|     *           ture means target data is in this linear table                                              |
+|     *           false means target data is not in this linear table                                         |
+|     *   need head file: stdbool.h                                                                           |
+|     **/                                                                                                     |
+|     Bool search_Data_linear_table(linear_table *linear_table_name,DataType key_Word)                        |
+|        {                                                                                                    |
+|           if(linear_table_name != NULL && linear_table_name->length != -1)                                  |
+|              {                                                                                              |
+|                   int temp = 0;                                                                             |
+|                   for(temp;temp < linear_table_name->length)                                                |
+|                       {                                                                                     |
+|                           if(linear_table_name->Arry[temp] == key_Word )                                    | 
+|                              {                                                                              |
+|                                   return ture;                                                              |
+|                              }else{                                                                         |
+|                                       continue;                                                             |
+|                                   }                                                                         |     
+|                       }                                                                                     |
+|                   return false;                                                                             |
+|              }else{                                                                                         |
+|                       return false;                                                                         |
+|                   }                                                                                         |
+|        }                                                                                                    |
+|                                                                                                             |
+|    /**                                                                                                      |
+|     * linear Table Structure by link list                                                                   |
+|     * These operations are using for link link linear Table                                                 |
+|     *                                                                                                       |
+|     */                                                                                                      |
+|                                                                                                             |
+|    /**                                                                                                      |
+|     * create_new_linear_table()                                                                             |
+|     *   Function type: point                                                                                |
+|     *   return:  *new_linear_table                                                                          |
+|     *   need head file: stdlib.h                                                                            |
+|     *                                                                                                       |
+|     **/                                                                                                     |
+|     linear_table *create_new_linear_table()                                                                 |
+|        {                                                                                                    |
+|           linear_table *new_linear_table = (*linear_table)malloc(sizeof(linear_table));                     |
+|           /**                                                                                               |
+|            * first Node is not storage Data                                                                 |
+|            * you can make it to storage Data but need you spend more energetic to consider the Function     |
+|            * in this function,I'm not using first Node to storage Data                                      |
+|            *                                                                                                |
+|            * If you want to use first Node storaging data,is not difficult                                  |
+|            *   a.get variavle from user when they using create_new_linear_table                             |
+|            *      like this:                                                                                |
+|            *      new function                                                                              |
+|            *   <->create_new_linear_table(DataType data)                                                    |
+|            *      before function:                                                                          |
+|            *    <->create_new_linear_table()                                                                |
+|            *   b.storage variavle of data in link list Node's data area                                     |
+|            *      like this:                                                                                |
+|            *      linear_table *new_linear_table = (linear_table*)malloc(sizeof(linear_table));             |
+|            *      new_linear_table->Data = data;                                                            |
+|            *   c.others logic thought is same                                                               |
+|            *                                                                                                |
+|            **/                                                                                              |
+|            new_linear_table->Data = NULL;                                                                   |
+|          //new_linear_table-Data = data;                                                                    |
+|            new_linear_table->next_Node = NULL;                                                              |
+|                                                                                                             |
+|           /**                                                                                               |
+|            * If have the second pointer which is pointing to previous Node                                  |
+|            *                                                                                                |
+|            **/                                                                                              |
+|          //new_linear_table->previous_Node = NULL;                                                          |
+|                                                                                                             |
+|           /**                                                                                               |
+|            * Creating a head pointer to point the first Node---Head Node                                    |
+|            *                                                                                                |                                                                                                    
+|            **/                                                                                              |
+|           linear_table *head_pointer = new_linear_table;                                                    |
+|                                                                                                             |
+|           /**                                                                                               |
+|            * new_linear_table->length == -1 means we not execute create_new_linear_table()                  |                  
+|            *                                or create_new_linear_table() not work                           |
+|            * new_linear_table->length == 0 means create_new_linear_table() working successfully             |      
+|            *                                                                                                |
+|            **/                                                                                              |
+|           new_linear_table->length = new_linear_table->length + 1                                           |
+|        }                                                                                                    |
+|                                                                                                             |
+|        /**                                                                                                  |
+|         * insert_Data_into_linear_table()                                                                   |
+|         * function type: Bool                                                                               |
+|         * return: ture or false                                                                             |
+|         * need head file: stdlib.h                                                                          |
+|         *                 stdbool.h                                                                         |
+|         *                                                                                                   |
+|         **/                                                                                                 |
+|         Bool insert_Data_into_linear_table(linear_table *linear_table_name)                                 |
+|         {                                                                                                   |
+|               if(linear_table_name->length != -1 && linear_table_name != NULL)                              |
+|                  {                                                                                          |
+|                       linear_table *insert_node = (linear_table*)malloc(sizeof(linear_table));  /**         |
+|                                                                                                  * apply    |
+|                                                                                                  * memory   |
+|                                                                                                  * from     |
+|                                                                                                  * system   |
+|                                                                                                  *          |
+|                                                                                                  **/        |
+|                   
+|                  }
+|         }
+|-------------------------------------------------------------------------------------------------------------|
