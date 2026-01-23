@@ -1,0 +1,88 @@
+|--------------------------------------------------------------------------|
+|Stack is a Abstract Data Structure.                                       |
+|    it must obye the rules:                                               |
+|        Only one direction to add Element and delet Element.              |
+|**************************************************************************|
+|   Operation:                                                             |
+|       push():put the Element into Stack                                  |
+|       pop() :delet the Element in Stack                                  |
+|**************************************************************************|
+|   Construction:                                                          |
+|       1.line_list             //storage Element                          |
+|       2.stack_topPointer     //to show the state of Stack                |
+|**************************************************************************|
+|   Realize:                                                               |
+|       //By Arry                                                          |
+|           typedef struct  Arry_Stack{                                    |
+|               DataType Arry[Size];                                       |
+|               int Stack_top = -1;                                        |
+|           }Stack;                                                        |
+|       //By link_list                                                     |
+|           typedef struct link_list_Stack{                                |
+|               DataType Node_data;                                        |
+|               struct Node_Stack *Next_Node;                              |
+|               struct Ndoe_Satcl *previously_Node;                        |
+|               int Stack_top = -1;                                        |
+|           }Stack;                                                        |
+|   tips:                                                                  |
+|       for this Structure,you don't consider line_list insert Method.     |
+|       you can use head-insert Method                                     |
+|       you can use tail-insert Method                                     |
+|**************************************************************************|    
+|   Operation:                                                             |
+|       /**                                                                |
+|        *Arry_Stack                                                       |
+|        **/                                                               |
+|       //push Element into Stack                                          |
+|       int                                                                |
+|       push(Stack *Stack_topPointer,DataType Element)                     |
+|       {                                                                  |
+|           Stack_topPointer->Stack_top = Stack_topPointer->Stack_top + 1; |
+|           Stack_topPointer->Arry[stack_topPointer->Stack_top] = Element; |
+|           return 0;                                                      |
+|       }                                                                  |
+|       //pop Element out Stack                                            |
+|       int                                                                |    
+|       pop(Stack *Stack_topPointer)                                       |
+|       {                                                                  |
+|           Stack_topPointer[Stack_topPointer->Stack_top] = NULL;          |
+|           Stack_topPointer->Stack_top = Stack_topPointer->Stack_top -1;  |
+|       }                                                                  |                    
+|       /**                                                                |
+|        *link_list_Stack                                                  |
+|        **/                                                               |
+|       //push Element into Stack                                          |
+|       int                                                                |
+|       push(Stack *Stack_topPointer,DataType Element)                     |
+|       {                                                                  |
+|           /*---apply memory from Operation System by malloc functon----*/|
+|        //<*>                                                             |
+|           Stack *New_Stack_Node =                                        |
+|           (Stack*)malloc(sizeof(Stack));                                 |
+|           /*-----------refactor link_list Structure--------*/            |
+|        //<*>                                                             |
+|           Stack_topPointer->Next_Node = New_Stack_Node;                  |
+|           New_Stack_Node->previously_Node = Stack_topPointer;            |
+|           Stack_topPointer = New_Stack_Node;                             |
+|           /*------------Add new data into Stack------------*/            |
+|        //<*>                                                             |
+|           Stack_topPointer->Node_data = Element;                         |
+|           New_Stack_Node = NULL;                                         |
+|           return 0;                                                      |
+|       }                                                                  |
+|       //pop Element out of Stack                                         |
+|       int                                                                |
+|       pop(Stack* Stack_topPointer)                                       |
+|       {                                                                  |
+|           /*-----------refactor link_list Structure--------*/            |
+|        //<*>                                                             |                                          
+|           Stack *temp_Pointer = Stack_topPointer;                        |
+|           Stack_topPointer = Stack_topPointer->previously_Node;          |
+|           Stack_topPointer->Next_Node = NULL;                            |
+|           /*----release memory which is apply from Operation System----*/|
+|        //<*>                                                             |
+|           free(temp_Pointer);                                            |
+|           Stack_top = Stack_top - 1;                                     |
+|           return 0;                                                      |
+|       }                                                                  |
+|**************************************************************************|
