@@ -1,1 +1,23 @@
-
+1.Key Words
+    These Words are using for tell computer what should to do.
+    Because of these Key Words,we can build our project and talk with computer.
+   a.DataType Key Words
+        |---------------------------|--------------------------------------------|-----------------------|
+        |        Number Type        |                  Function                  |      How to use       |
+        |---------------------------|--------------------------------------------|-----------------------|
+        |     int                   |             Creat intger variable          |   int variable_name   |
+        |---------------------------|--------------------------------------------|-----------------------|
+        |     short int             |
+        |---------------------------|                 
+        |     long long int         |
+        |---------------------------| 
+        |     unsigned int          |  
+        |---------------------------| 
+        |     unsigned short int    |  
+        |---------------------------|
+        |                           |
+        |---------------------------|     
+        |     float                 |
+        |---------------------------|
+        |     double                |
+        |---------------------------|
