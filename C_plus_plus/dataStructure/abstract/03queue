@@ -1,0 +1,108 @@
+|------------------------------------------------------------------------------------------------------------------------|
+|   If you want to realize a Queue,you must Obey the rules:                                                              |
+|           1.Only one direction to exit                                                                                 |
+|           2.Only another direction to enter                                                                            |
+|************************************************************************************************************************|
+|   realize:                                                                                                             |
+|       //By Arry                                                                                                        |
+|       typedef struct Arry_Queue                                                                                        |
+|       {                                                                                                                |
+|           DataType Arry_Queue[Size];                                                                                   |
+|           int Queue_fornt = Size;                                                                                      |
+|           int Queue_rear = Size;                                                                                       |
+|       }Queue;                                                                                                          |
+|      //By link_list                                                                                                    |
+|      typedef struct link_list_Queue_Node                                                                               |
+|      {                                                                                                                 |
+|           DataType DataElement;                                                                                        |
+|           struct  link_list_Queue *next_Queue_Node;                                                                    |
+|           struct  link_list_Queue *previously_Queue_Node;                                                              |
+|           int Queue_length = -1;                                                                                       |
+|      }Queue;                                                                                                           |
+|      Queue *link_list_Queue_front;                                                                                     |
+|      Queue *link_list_Queue_rear;                                                                                      |
+|************************************************************************************************************************|
+|   operation:                                                                                                           |
+|      //Arry_Queue                                                                                                      |
+|      //enter the DataElement into Queue                                                                                |
+|       int                                                                                                              |
+|       enterQueue(Queue *Arry_Queue,DataType DataElement)                                                               |                                                                    |
+|       {                                                                                                                |
+|           Queue_rear = Queue_rear - 1;                                                                                 |
+|           Arry_Queue->[Queue_rear] = DataElement;                                                                      |
+|           return 0;                                                                                                    |
+|       }                                                                                                                |
+|************************************************************************************************************************|
+|       initial state:                                                                                                   |
+|                                                   [rear = Size]                                                        |
+|       [0]->[1]->[2]->[3]->[4]->[5]->……->[Size-1]  [front = Size]                                                       |   
+|       insert first Element:                                                                                            |
+|                                         [rear = Size -1]                                                               |
+|       [0]->[1]->[2]->[3]->[4]->[5]->……->[front = Size -1]                                                              |
+|       //insert second Element                                                                                          |
+|       [0]->[1]->[2]->[3]->[4]->[5]->……->[rear = Size -2]->[front = Size -1]                                            |
+|       …………                                                                                                             |
+|       full Element in Queue:                                                                                           |
+|       [rear = 0]->[1]->[2]->[3]->[4]->[5]->……->[front = Size -1]                                                       |
+|************************************************************************************************************************|      
+|      //delet the DataElement in Queue                                                                                  |
+|      int                                                                                                               |
+|      exitQueue(Queue *Arry_Queue)                                                                                      |   
+|      {                                                                                                                 |
+|           Queue->Arry_Queue[Queue_fornt] = NULL;                                                                       |
+|           for(int i = Queue->Queue_fornt;i > Queue->Queue_rear;i--)                                                    |
+|           {                                                                                                            |
+|               if(Queue->Arry_Queue[i - 1] != NULL)                                                                     |
+|                   Queue->Arry_Queue[i] = Queue->Arry_Queue[i - 1];                                                     |            
+|           }                                                                                                            |
+|           Queue->Arry_Queue[Queue_rear] = NULL;                                                                        |
+|           Queue->Queue_rear = Queue->Queue_rear + 1;                                                                   |    
+|           return 0;                                                                                                    |
+|      }                                                                                                                 |
+|************************************************************************************************************************|
+|      suppose there have a Queue like this:                                                                             |
+|           [rear]->[]->[]->[]->[]->[]->[front]                                                                          |
+|      if you want to delet Element in Queue,the new Queue is:                                                           |
+|           [NULL]->[rear]->[]->[]->[]->[]->[front - 1 Element]                                                          |       
+|           [front Element] is exit Queue                                                                                |
+|************************************************************************************************************************|
+|    operation:                                                                                                          |
+|       //link_list_Queue                                                                                                |
+|       //enter Element into Queue                                                                                       |
+|       int                                                                                                              |
+|       enterQueue(Queue *Queue_rear,DataType DataElement)                                                               |
+|       {                                                                                                                |
+|        //<*>                                                                                                           |
+|           Queue *temp = (Queue*)malloc(sizeof(Queue));                                                                 |
+|        //<*>                                                                                                           |        
+|           temp->next_Queue_Node = Queue_rear;                                                                          |
+|           temp->previously_Queue_Node = NULL;                                                                          |
+|           Queue_rear->previously_Queue_Node = temp;                                                                    |
+|        //<*>                                                                                                           |
+|           Queue_rear = temp;                                                                                           |
+|           temp = NULL;                                                                                                 |    
+|           return 0;                                                                                                    |
+|       }                                                                                                                |
+|************************************************************************************************************************|
+|      initial Queue:                                                                                                    |
+|           NULL<---[Queue_rear]<===>[]<===>[]<===>[]<===>[]<===>[]<===>[]<===>[Queue_fornt]--->NULL                     |
+|      insert Element:                                                                                                   |
+|           [DataElement]                                                                                                |
+|      Add new Element into Queue:                                                                                       |
+|           [DataElement]--->[Queue_rear]<===>[]<===>[]<===>[]<===>[]<===>[]<===>[]<===>[Queue_fornt]--->NULL            |     
+|           NULL---[DataElement]--->……                                                                                   |
+|           [DataElement]<---[Queue_rear]<===>……                                                                         |
+|      After doing add operation:                                                                                        |
+|           NULL<---[DataElement]<===>……<===>[Queue_fornt]---NULL                                                        |
+|                   [Queue_rear]                                                                                         |
+|************************************************************************************************************************|
+|       //delet Element in Queue:                                                                                        |
+|       int                                                                                                              |
+|       exitQueue(Queue *Queue_fornt)                                                                                    |
+|       {                                                                                                                |
+|           Queue *temp = Queue_fornt;                                                                                   |
+|           Queue_fornt = Queue_fornt->previously_Queue_Node;                                                            |
+|           free(temp);                                                                                                  |
+|           return 0;                                                                                                    |
+|       }                                                                                                                |
+|------------------------------------------------------------------------------------------------------------------------|
