@@ -1,4 +1,4 @@
-#C plus plus
+# C plus plus
 This project aim to build a reliable Basic Computer Knowledge.
 
 If you also have interesting to learn and collect these Knowledge,you can add new into this project even you are freshman or old stage.
