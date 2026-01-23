@@ -1,0 +1,31 @@
+//Link_list----We realize this DataStructe by Node
+#include <stdlib.h>             //Memory Chargement Function of "malloc()" is included in this headFile      
+typedef struct Node{
+    //Data filed
+    DataType element_one;//DataType means you can use different type which you nedd,such as :int,char,mybe you will also need a struct type
+    DataType element_two;
+    …………                
+    DataType element_n; //In this code_block ,it job is to create some attribute_Value which can discribe a Object
+    //poniter filed
+    struct Node *next_Node  //to point to next Object
+    /**
+    *   tips
+    *   1、pointer filed not means you just use only one,you can use many point if you really need.
+    *   2、pointer job is to point a Memory that we use function of malloc() to get.
+    *   3、If a poniter  not point to a Memory,please make it point to NULL.
+    *   4、If you don't need the Memory which you have been apply from the Operating System by malloc(),please use function of free() to release it.
+    **/
+}linkNode;//rename this Type: for struct Node change to a new name :linkNode
+|----------------------------------------------------------------|
+|  Memory struct:                                                |
+|      Node -> Node -> Node -> …… -> Node                        |
+|      Node->poniter point to next Node                          |
+|  Math Function:                                                |
+|      it's a Data struct,                                       |
+|      we can use this struct to realize many DataStructe        |
+|  Example:                                                      |
+|        Graph                                                   |
+|        tree                                                    |
+|        queue                                                   |
+|        stack                                                   |
+|----------------------------------------------------------------|
