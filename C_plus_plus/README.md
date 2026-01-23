@@ -1,4 +1,4 @@
-# <span style="color:#0066cc;">C plus plus</span>
+# C plus plus
 This project aim to build a reliable Basic Computer Knowledge.
 
 If you also have interesting to learn and collect these Knowledge,you can add new into this project even you are freshman or old stage.
@@ -7,7 +7,7 @@ If this project have error,please correcting.
 
 Due to my knowledge level is not too high and I am also a Beginner,so if you consider my thought is not good or lowdown,please excuse me.
 
-Basical Data Structure
+Basic Data Structure
 -----------------------------------------------------------------------
 
 	   	[1]Arry
