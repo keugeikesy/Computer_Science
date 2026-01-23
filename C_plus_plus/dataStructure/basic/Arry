@@ -1,0 +1,100 @@
+|-------------------------------------------------------------------------------------------------------------|
+|                                                                                                             |
+|  /**                                                                                                        |
+|   *For Arry,there have two model of it:                                                                     |
+|   *                                                                                                         |
+|   *a.one-dimensional                                                                                        |
+|   *b.two-dimensional                                                                                        |
+|   *                                                                                                         |
+|   **/                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------|
+|                                                                                                             |                                                                       
+|   /**                                                                                                       |
+|    *First model                                                                                             |   
+|    *one-dimensional-----linear Structure                                                                    |
+|    *                                                                                                        |
+|    *one-dimensional Arry                                                                                    |
+|    *Arry[0]---Arry[1]---Arry[2]---Arry[3]---……---Arry[Size -1]                                              |  
+|    *                                                                                                        |                                                              
+|    **/                                                                                                      |
+|    DataType Arry[Size];                                                                                     |
+|                                                                                                             |
+|-------------------------------------------------------------------------------------------------------------|  
+|                                                                                                             |                                                                    
+|   /**                                                                                                       |
+|    *Second model                                                                                            |
+|    *two-dimensional----Matrix Structure                                                                     |
+|    *                                                                                                        |
+|    *two-dimensional Arry is different from one-dimensional                                                  |
+|    *a.Depend on row to save                                                                                 |             
+|    *              /------------------------------------------------------------------------/                |
+|    *             /Arry[0][0]---Arry[0][1]---……---Arry[0][row_size - 1]                    /                 |
+|    *            / Arry[1][0]---Arry[1][1]---……---Arry[1][row_size - 1]                   /                  |
+|    *           /  …………                                                                  /                   |
+|    *          /   Arry[column_size-1][0]---……---Arry[column_size-1][row_size-1]        /                    |   
+|    *         /------------------------------------------------------------------------/                     |                                                     
+|    *b.Depend on column to save                                                                              |
+|    *       /------------------------------------------------------------------------/                       |                   
+|    *      /       Arry[0][0]---Arry[1][0]---……---Arry[column_size-1][0]            /                        |
+|    *     /        Arry[0][1]---Arry[1][1]---……---Arry[column_size-1][1]           /                         |
+|    *    /         …………                                                           /                          |
+|    *   /          Arry[0][row_size-1]---……---Arry[column_size-1][row_size-1]    /                           |
+|    *  /------------------------------------------------------------------------/                            |
+|    *                                                                                                        |
+|    *It also can consider as linear Arry                                                                     |
+|    *For two-dimensional Arry,it's Element Address can also calculate by formula                             | 
+|    *                                                                                                        |    
+|    **/                                                                                                      |
+|    DataType Arry[row_size][column_size];                                                                    |
+|                                                                                                             |
+|-------------------------------------------------------------------------------------------------------------|
+|                                                                                                             |
+|   /**                                                                                                       |
+|    *You can also create pointer-Arry to stoage Arry                                                         |
+|    *this Arry can stoage pointer variable                                                                   |
+|    *                                                                                                        |
+|    *a.one-dimensional [pointer-layer]pointer-Arry                                                           |
+|    *b.two-dimensional [pointer-layer]pointer-Arry                                                           |
+|    *  pointer-layer means:                                                                                  |
+|    *      Num         pointer         storage-object                                                        |
+|    *       0            NULL             Data                                                               |
+|    *       1             *               Data_Address                                                       |
+|    *       2             **             *Data_Address                                                       |
+|    *       3             ***           **Data_Address                                                       |
+|    *       …             …               …                                                                  |
+|    **/                                                                                                      |
+|                                                                                                             |
+|    /**                                                                                                      |
+|     *one-dimensional pointer-Arry                                                                           |       
+|     *                                                                                                       |
+|     **/                                                                                                     |
+|     DataType *Arry[Size];                                                                                   |       
+|                                                                                                             |
+|     /**                                                                                                     |
+|      *                                                                                                      |
+|      *two-dimensional pointer-Arry                                                                          |
+|      *                                                                                                      |
+|      **/                                                                                                    |
+|       DataType *Arry[row_size][column_size];                                                                |
+|                                                                                                             |
+|     /**                                                                                                     |
+|      *                                                                                                      |
+|      *one-dimensional pointer-pointer-Arry                                                                  |
+|      *                                                                                                      |
+|      **/                                                                                                    |
+|      DataType **Arry[Size];                                                                                 |
+|                                                                                                             |
+|     /**                                                                                                     |
+|      *                                                                                                      |
+|      *two-dimensional pointer-pointer-Arry                                                                  |
+|      *                                                                                                      |
+|      **/                                                                                                    |
+|       DataType **Arry[row_size][column_size];                                                               |
+|                                                                                                             |
+|     /**                                                                                                     |
+|      *                                                                                                      |
+|      *Using your creative,try to use pointer-pointer-pointer-Arry and so on                                 |
+|      *                                                                                                      |
+|      **/                                                                                                    | 
+|                                                                                                             | 
+|-------------------------------------------------------------------------------------------------------------|   
